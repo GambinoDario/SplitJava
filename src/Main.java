@@ -1,5 +1,7 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
+@SuppressWarnings({"ForLoopReplaceableByForEach", "ExplicitArrayFilling"})
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -7,26 +9,23 @@ public class Main {
         String input = scan.nextLine();
         System.out.println("Inserisco il carattere");
         char regex = (scan.nextLine().charAt(0));
-        char[] inputArray = new char[input.length()+1];
-        inputArray = input.toCharArray();
-        inputArray[inputArray.length-1] = regex;
+        char[] inputArray = input.toCharArray();
         int presenza = 0;
         for (int i = 0; i < inputArray.length; i++) {
             if(inputArray[i] == regex){
                 presenza++;
             }
         }
-        String[] risultatoArray = new String[presenza+1]; //le stringhe nell'array è sempre +1 pk quando si divide si creano 2 risultati (+2 per l'ultimo valore che sennò è null
-        String risultato = "";
+        String[] risultatoArray = new String[presenza+1]; //le stringhe nell'array è sempre +1 pk quando si divide si creano 2 risultati
+        for (int i = 0; i < risultatoArray.length; i++) {
+            risultatoArray[i] = "";
+        }
         int j = 0;
-
         for (int i = 0; i < inputArray.length; i++) {
-            if(inputArray[i] != regex){
-                risultato += inputArray[i];
-            }else{
-                risultatoArray[j] = risultato;
+            if(inputArray[i] == regex){
                 j++;
-                risultato = "";
+            }else{
+                risultatoArray[j] += inputArray[i];
             }
         }
         for (int i = 0; i < risultatoArray.length; i++) {
